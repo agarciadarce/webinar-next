@@ -1,13 +1,26 @@
-import Container from "../../components/Container"
+import Container from "../../components/Container";
+import UserCard from "../../components/UserCard";
 
-const Index = () =>{
-    return (
-        <Container>
-            <div className="container">
-                <h2>usuarios</h2>
+const Index = ({ users }) => {
+  return (
+    <Container title="Usuarios">
+      <div className="container mt-4">
+        <div className="row">
+          {users.map((value, index) => (
+            <div className="col-3" key={index}>
+              <UserCard value={value}/>
             </div>
-        </Container>
-    )
-}
+          ))}
+        </div>
+      </div>
+    </Container>
+  );
+};
 
-export default Index
+Index.getInitialProps = async (ctx) => {
+  const res = await fetch(`https://reqres.in/api/users/`);
+  const resJSON = await res.json();
+  return { users: resJSON.data };
+};
+
+export default Index;
