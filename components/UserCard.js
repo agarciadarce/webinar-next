@@ -12,7 +12,7 @@ const UserCard =({value})=>{
                     {value.first_name} {value.last_name}
                   </h5>
                   <p className="card-text">Any</p>
-                  <Link href={"/posts/" + value.id}>
+                  <Link href="/posts/[userId]" as={"/posts/" + value.id}>
                   <a className="btn btn-primary">
                     Ver sus publicaciones
                   </a>
